@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -58,15 +59,26 @@ public class ArcoIris {
 
           System.out.println("-------------------------");
 
-          /* remova todas as cores que nao começam com a letra 'V' */
-
           char letraV= 'V';
-
-          minhasCores.removeIf(minhaCor->minhaCor.startsWith(String.valueOf(letraV)));
           for (String minhaCor : minhasCores) {
-            System.out.println(minhaCor);
+            if (minhaCor.charAt(0)==letraV) {
+                System.out.println(minhaCor);
+            }
           }
 
+          System.out.println("-------------------------");
+
+          /* remova todas as cores que nao começam com a letra 'V' */
+
+          Iterator<String>iterator=minhasCores.iterator();
+          while (iterator.hasNext()){
+            String minhaCor=iterator.next();
+            if (!(minhaCor.startsWith("v")|| minhaCor.startsWith("V"))) {
+              iterator.remove();
+              
+            }
+          }
+          System.out.println("As cores que ficaram após a remoção foram: " + minhasCores);
           /* limpe o conjunto */
 
           minhasCores.clear();
@@ -74,7 +86,7 @@ public class ArcoIris {
           /* confira se o conjunto esta vazio */
 
           System.out.println("-------------------------");
-
+          System.out.println("Removendo todo o conjunto:");
           System.out.println("O conjunto esta vazio? " + minhasCores.isEmpty());
     }
 
